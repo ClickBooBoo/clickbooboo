@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClickBooBoo Counter</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      overflow: hidden;
+    }
+
+    .top-bar {
+      background-color: #007bca;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      position: relative;
+    }
+
+    .logo-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-title span {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    .close-button {
+      font-size: 1.5em;
+      cursor: pointer;
+      transition: transform 0.1s ease;
+    }
+
+    .close-button:active {
+      transform: scale(0.95);
+    }
+
+    .close-button:hover {
+  color: #fe2100;
+}
+
+    .goo-label {
+      font-size: 1em;
+      font-weight: bold;
+      color: black;
+      text-align: center;
+      margin: 20px auto 0 auto;
+    }
+
+    .content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 60px);
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .number-line {
+      font-size: 6em;
+      font-weight: bold;
+      margin: 10px 0 30px 0;
+      font-family: Arial, sans-serif;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 90vw;
+    }
+
+    .button-panel {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .button-panel button {
+      background-color: #ff4016;
+      color: white;
+      border: 1px solid transparent;
+      font-size: 2.25em;
+      padding: 20px 60px;
+      cursor: pointer;
+      border-radius: 12px;
+      transition: transform 0.1s ease;
+    }
+
+    .button-panel button:active {
+      transform: scale(0.95);
+    }
+
+    .button-panel button:hover {
+      background-color: #ff842c;
+    }
+
+    .bottom-controls {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 15px;
+    }
+
+    .bottom-controls button {
+      background-color: white;
+      color: black;
+      font-family: Arial, sans-serif;
+      font-size: 1em;
+      padding: 10px 20px;
+      border: 2px solid black;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.1s ease;
+    }
+
+    .bottom-controls button:active {
+      transform: scale(0.95);
+    }
+
+    .plus-button {
+      background-color: white;
+      color: black;
+      border: 2px solid black;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="logo-title">
+      <span>🐸</span>
+      <span>ClickBooBoo</span>
+    </div>
+    <div class="close-button" onclick="closeWindow()">✖</div>
+  </div>
+
+  <div class="goo-label">GOO</div>
+
+  <div class="content">
+    <div class="number-line" id="numberDisplay">0</div>
+    <div class="button-panel">
+      <button onclick="changeNumber(-1)">-</button>
+      <button onclick="restartNumber()">↻</button>
+      <button onclick="changeNumber(1)">+</button>
+    </div>
+  </div>
+
+  <div class="bottom-controls">
+    <button onclick="changeNumber(-555)">-555</button>
+    <button onclick="changeNumber(-1111)">-1111</button>
+    <button onclick="changeNumber(-2222)">-2222</button>
+    <button class="plus-button" onclick="changeNumber(99999999999999777)">+</button>
+  </div>
+
+  <script>
+    let number = BigInt(0);
+    const maxNumber = BigInt("1" + "0".repeat(17));
+
+    function changeNumber(val) {
+      const newNumber = number + BigInt(val);
+      if (newNumber <= maxNumber) {
+        number = newNumber;
+        document.getElementById("numberDisplay").innerText = number.toString();
+      }
+    }
+
+    function restartNumber() {
+      number = BigInt(0);
+      document.getElementById("numberDisplay").innerText = number.toString();
+    }
+
+    function closeWindow() {
+      if (confirm("Are you sure you want to close the game?")) {
+        window.open('', '_self', '');
+        window.close();
+      }
+    }
+  </script>
+</body>
+</html>
